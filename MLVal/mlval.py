@@ -1,4 +1,4 @@
 from . import integration 
 
 def MLValReport(*args):
-    return 1
+    return 2
