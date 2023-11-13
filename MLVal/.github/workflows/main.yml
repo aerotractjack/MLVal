@@ -32,4 +32,4 @@ jobs:
         run: |
           ssh -o PasswordAuthentication=no -p 2599 aerotract@67.210.192.18 "mkdir -p /home/aerotract/software/MLVal/MLVal"
           scp -o PasswordAuthentication=no -P 2599 -r ./* aerotract@67.210.192.18:/home/aerotract/software/MLVal/MLVal
-          ssh -o PasswordAuthentication=no -p 2599 aerotract@67.210.192.18 "cd /home/aerotract/software/MLVal/MLVal; chmod +x install.sh; ./install.sh"
+          # ssh -o PasswordAuthentication=no -p 2599 aerotract@67.210.192.18 "cd /home/aerotract/software/MLVal/MLVal; chmod +x install.sh; ./install.sh"
