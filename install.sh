@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p /home/aerotract/software/MLVal/MLVal
 pushd /home/aerotract/software/MLVal/MLVal
 rm -rf *.egg-info/ dist/ build/
 /usr/bin/python3 setup.py sdist bdist_wheel
