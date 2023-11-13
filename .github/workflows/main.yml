@@ -1,4 +1,4 @@
-name: Deploy MLVal
+name: Deploy MLVal SDK
 on:
   push:
     branches:
@@ -25,11 +25,11 @@ jobs:
 
       - name: Deploy to Sandra
         run: |
-          ssh -o PasswordAuthentication=no -p 1953 aerotract@67.210.192.18 "cd /home/aerotract/software/TPA/TPACalc; ./install.sh"
-          ssh -o PasswordAuthentication=no -p 1953 aerotract@67.210.192.18 "cd /home/aerotract/software/TPA/TPAService; ../../internal-tools/restart-service.sh TPAAPI.service"
+          ssh -o PasswordAuthentication=no -p 1953 aerotract@67.210.192.18 "cd /home/aerotract/software/MLVal/MLVal; ./install.sh"
+          ssh -o PasswordAuthentication=no -p 1953 aerotract@67.210.192.18 "cd /home/aerotract/software/MLVal/MLValService; ../../internal-tools/restart-service.sh MLValAPI.service"
 
       - name: Deploy to Seth WS
         run: |
-          ssh -o PasswordAuthentication=no -p 2599 aerotract@67.210.192.18 "mkdir -p /home/aerotract/software/TPA/TPACalc"
-          scp -o PasswordAuthentication=no -P 2599 -r ./* aerotract@67.210.192.18:/home/aerotract/software/TPA/TPACalc
-          ssh -o PasswordAuthentication=no -p 2599 aerotract@67.210.192.18 "cd /home/aerotract/software/TPA/TPACalc; chmod +x install.sh; ./install.sh"
+          ssh -o PasswordAuthentication=no -p 2599 aerotract@67.210.192.18 "mkdir -p /home/aerotract/software/MLVal/MLVal"
+          scp -o PasswordAuthentication=no -P 2599 -r ./* aerotract@67.210.192.18:/home/aerotract/software/MLVal/MLVal
+          # ssh -o PasswordAuthentication=no -p 2599 aerotract@67.210.192.18 "cd /home/aerotract/software/MLVal/MLVal; chmod +x install.sh; ./install.sh"
