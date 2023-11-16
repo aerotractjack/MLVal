@@ -18,13 +18,47 @@ def get_val_paths(client_id, project_id, stand_id):
         raise ValueError("API call failed: " + str(req.text))
     return req.json()
 
-def get_prediction_path(client_id, project_id, stand_id):
-    body = {"client_id": client_id, "project_id": project_id, 
-            "stand_id": stand_id}
-    req = requests.post(db_api_url + "/api/stand_from_ids", json=body)
+def get_src_img_path(client_id, project_id, stand_id):
+    body = {
+        "entry": {
+            "CLIENT_ID": client_id,
+            "PROJECT_ID": project_id,
+            "STAND_ID": stand_id
+        },
+        "filetype": "max_res_ortho"
+    }
+    req = requests.post(storage_api_url + "/filepath", json=body)
     if not req.status_code == 200:
         raise ValueError("API call failed: " + str(req.text))
-    return req.json()[0]
+    return req.json()
+
+def get_prediction_path(client_id, project_id, stand_id):
+    body = {
+        "entry": {
+            "CLIENT_ID": client_id,
+            "PROJECT_ID": project_id,
+            "STAND_ID": stand_id
+        },
+        "filetype": "ai_results_file"
+    }
+    req = requests.post(storage_api_url + "/filepath", json=body)
+    if not req.status_code == 200:
+        raise ValueError("API call failed: " + str(req.text))
+    return req.json()
+
+def get_mlval_report_path(client_id, project_id, stand_id):
+    body = {
+        "entry": {
+            "CLIENT_ID": client_id,
+            "PROJECT_ID": project_id,
+            "STAND_ID": stand_id
+        },
+        "filetype": "ml_val_report"
+    }
+    req = requests.post(storage_api_url + "/filepath", json=body)
+    if not req.status_code == 200:
+        raise ValueError("API call failed: " + str(req.text))
+    return req.json()
 
 if __name__ == "__main__":
     import sys
